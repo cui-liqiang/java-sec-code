@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Custom Ruleset"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <!-- 描述规则集 -->
+    <description>
+        自定义 PMD 规则集，用于检查常见的 Java 编码问题。
+    </description>
+
+    <!-- 启用内置规则集中的部分规则 -->
+    <rule ref="category/java/bestpractices.xml">
+        <!-- 禁用某些规则（如果不需要） -->
+        <exclude name="AvoidUsingShortType" />
+    </rule>
+
+    <rule ref="category/java/errorprone.xml">
+        <!-- 仅启用特定规则 -->
+        <include name="AvoidNullPointerDereference" />
+        <include name="AvoidDuplicateLiterals" />
+    </rule>
+
+    <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts" />
+
+    <!-- 自定义规则 -->
+    <rule name="CustomRuleExample"
+          language="java"
+          message="避免在方法中使用 System.out.println 进行日志记录"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            检查是否在代码中直接使用了 System.out.println，建议改用日志框架。
+        </description>
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value>
+                    //PrimaryPrefix/Name[@Image='System.out.println']
+                </value>
+            </property>
+        </properties>
+    </rule>
+</ruleset>
