@@ -23,21 +23,4 @@
 
     <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts" />
 
-    <!-- 自定义规则 -->
-    <rule name="CustomRuleExample"
-          language="java"
-          message="避免在方法中使用 System.out.println 进行日志记录"
-          class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <description>
-            检查是否在代码中直接使用了 System.out.println，建议改用日志框架。
-        </description>
-        <priority>3</priority>
-        <properties>
-            <property name="xpath">
-                <value>
-                    //PrimaryPrefix/Name[@Image='System.out.println']
-                </value>
-            </property>
-        </properties>
-    </rule>
 </ruleset>
