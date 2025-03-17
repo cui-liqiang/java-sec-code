@@ -6,10 +6,6 @@
 
     <description>PMD 7.8.0 规则集</description>
 
-    <!-- 设置语言版本 -->
-    <configuration>
-        <language-version>17</language-version>
-    </configuration>
 
     <!-- 规则引用 -->
     <rule ref="category/java/bestpractices.xml">
