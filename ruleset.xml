@@ -1,26 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="Custom Ruleset"
-         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+<?xml version="1.0"?>
+<ruleset name="Custom Rules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 
-    <!-- 描述规则集 -->
-    <description>
-        自定义 PMD 规则集，用于检查常见的 Java 编码问题。
-    </description>
+    <description>PMD 7.8.0 规则集</description>
 
-    <!-- 启用内置规则集中的部分规则 -->
+    <!-- 设置语言版本 -->
+    <configuration>
+        <language-version>17</language-version>
+    </configuration>
+
+    <!-- 规则引用 -->
     <rule ref="category/java/bestpractices.xml">
-        <!-- 禁用某些规则（如果不需要） -->
-        <exclude name="AvoidUsingShortType" />
+        <exclude name="GuardLogStatement"/>
     </rule>
-
-    <rule ref="category/java/errorprone.xml">
-        <!-- 仅启用特定规则 -->
-        <include name="AvoidNullPointerDereference" />
-        <include name="AvoidDuplicateLiterals" />
-    </rule>
-
-    <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts" />
-
+    <rule ref="category/java/codestyle.xml"/>
+    <rule ref="category/java/design.xml"/>
+    <rule ref="category/java/documentation.xml"/>
+    <rule ref="category/java/errorprone.xml"/>
+    <rule ref="category/java/multithreading.xml"/>
+    <rule ref="category/java/performance.xml"/>
+    <rule ref="category/java/security.xml"/>
 </ruleset>
