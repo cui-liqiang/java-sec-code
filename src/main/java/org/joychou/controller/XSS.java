@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  * @author JoyChou @2018-01-02
  */
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class XSS {
 
     /**
-     * Vuln Code.
+     * Fixed Code.
      * ReflectXSS
      * http://localhost:8080/xss/reflect?xss=<script>alert(1)</script>
      *
@@ -27,11 +26,11 @@ public class XSS {
     @RequestMapping("/reflect")
     @ResponseBody
     public static String reflect(String xss) {
-        return xss;
+        return encode(xss);
     }
 
     /**
-     * Vul Code.
+     * Fixed Code.
      * StoredXSS Step1
      * http://localhost:8080/xss/stored/store?xss=<script>alert(1)</script>
      *
@@ -40,13 +39,13 @@ public class XSS {
     @RequestMapping("/stored/store")
     @ResponseBody
     public String store(String xss, HttpServletResponse response) {
-        Cookie cookie = new Cookie("xss", xss);
+        Cookie cookie = new Cookie("xss", encode(xss));
         response.addCookie(cookie);
         return "Set param into cookie";
     }
 
     /**
-     * Vul Code.
+     * Fixed Code.
      * StoredXSS Step2
      * http://localhost:8080/xss/stored/show
      *
@@ -55,7 +54,7 @@ public class XSS {
     @RequestMapping("/stored/show")
     @ResponseBody
     public String show(@CookieValue("xss") String xss) {
-        return xss;
+        return encode(xss);
     }
 
     /**
